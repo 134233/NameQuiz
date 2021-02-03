@@ -2,5 +2,4 @@
 <resources>
     <item name="imageViewPerson" type="id" />
     <item name="textViewName" type="id" />
-    <item name="deleteButton" type="id" />
 </resources>

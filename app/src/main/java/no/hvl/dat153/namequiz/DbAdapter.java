@@ -43,10 +43,6 @@ public class DbAdapter extends ArrayAdapter<Person> {
         TextView textView = view.findViewById(R.id.textViewName);
         textView.setText(getItem(position).getName());
 
-        //Delete button
-        Button deleteButton = view.findViewById(R.id.deleteButton);
-        deleteButton.setOnClickListener(v -> remove(getItem(position)));
-
         return view;
     }
 

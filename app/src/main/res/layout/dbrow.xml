@@ -9,7 +9,7 @@
         android:id="@+id/imageViewPerson"
         android:layout_width="115dp"
         android:layout_height="102dp"
-        android:contentDescription="@string/picture"
+        android:contentDescription="picture"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
