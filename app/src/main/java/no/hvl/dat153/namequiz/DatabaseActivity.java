@@ -19,6 +19,7 @@ import no.hvl.dat153.namequiz.Person;
 public class DatabaseActivity extends AppCompatActivity {
 
     private ListView listView;
+    private PersonDatabase personDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,9 @@ public class DatabaseActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.dbList);
 
-        List<Person> persons = ((Database) this.getApplication()).getDatabase();
+        personDatabase = personDatabase.getInstance(this);
+
+        List<Person> persons = personDatabase.personDAO().getAll();
 
         DbAdapter databaseAdapter = new DbAdapter(this, R.layout.dbrow, persons);
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -18,42 +19,24 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    protected Map<String, Object> actions = new HashMap<>();
-
-    void prepareMenu() {
-        addMenuItem("Quiz", QuizActivity.class);
-        addMenuItem("Database", DatabaseActivity.class);
-        addMenuItem("Add new character", AddActivity.class);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-    List<Person> persons = ((Database) this.getApplication()).getDatabase();
-    boolean ans = persons.isEmpty();
-        if (ans) {
-        ((Database) this.getApplication()).addPerson(new Person("Donald", getDrawable(R.drawable.donald)));
-        ((Database) this.getApplication()).addPerson(new Person("Dolly", getDrawable(R.drawable.dolly)));
-        ((Database) this.getApplication()).addPerson(new Person("Anton", getDrawable(R.drawable.anton)));
     }
 
-    prepareMenu();
+    public void quiz(View view) {
+        Intent i = new Intent(this, QuizActivity.class);
+        startActivity(i);
+    }
 
-    String[] keys = actions.keySet().toArray(new String[actions.keySet().size()]);
+    public void database(View view) {
+        Intent i = new Intent(this, DatabaseActivity.class);
+        startActivity(i);
+    }
 
-    ListView av = (ListView) findViewById(R.id.menu_list);
-    ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keys);
-
-    av.setAdapter(adapter);
-        av.setOnItemClickListener((parent, view, position, id) -> {
-        String key = (String) parent.getItemAtPosition(position);
-        MainActivity.this.startActivity((Intent) actions.get(key));
-    });
-}
-
-    public void addMenuItem(String label, Class<?> cls) {
-        actions.put(label, new Intent(this, cls));
+    public void add(View view) {
+        Intent i = new Intent(this, AddActivity.class);
+        startActivity(i);
     }
 }

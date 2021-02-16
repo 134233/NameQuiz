@@ -36,6 +36,8 @@ public class AddActivity extends AppCompatActivity {
     EditText name;
     ImageView image;
 
+    private PersonDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,9 @@ public class AddActivity extends AppCompatActivity {
         //Bind function to buttons
         takePic.setOnClickListener(v -> checkAccessCamera());
         libraryPic.setOnClickListener(v -> checkAccessLibrary());
+
+        // Person Database
+        db = PersonDatabase.getInstance(this);
 
     }
 
@@ -94,9 +99,8 @@ public class AddActivity extends AppCompatActivity {
     public void addPerson(View view) {
 
         if (!name.toString().equals("") && image.getDrawable() != null) {
-            ((Database) this.getApplication()).addPerson(new Person(name.getText().toString(), image.getDrawable()));
+            db.personDAO().addPerson(new Person(name.getText().toString(), image.getDrawable()));
             Toast.makeText(this, "Person added", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(this, DatabaseActivity.class);
             startActivity(intent);
         } else {

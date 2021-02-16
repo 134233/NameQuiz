@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,18 +16,22 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hvl.dat153.namequiz.Person;
+import no.hvl.dat153.namequiz.PersonDatabase;
 import no.hvl.dat153.namequiz.R;
 
 public class DbAdapter extends ArrayAdapter<Person> {
 
     private Context context;
     private int resources;
+    private PersonDatabase personDatabase;
+    private List<Person> persons;
 
     public DbAdapter (@NonNull Context context, int resources, @NonNull List<Person> persons) {
         super(context, resources, persons);
         this.context = context;
         this.resources = resources;
+        this.persons = persons;
+        this.personDatabase = PersonDatabase.getInstance(context);
     }
 
     @NonNull
@@ -46,9 +51,16 @@ public class DbAdapter extends ArrayAdapter<Person> {
 
         //Delete button
         Button deleteButton = view.findViewById(R.id.deleteButton);
-        deleteButton.setOnClickListener(v -> remove(getItem(position)));
+        deleteButton.setOnClickListener(v -> deletePerson(position));
 
         return view;
+    }
+
+    public void deletePerson(int pos){
+        Person person = getItem(pos);
+        remove(person);
+        personDatabase.personDAO().deletePerson(person);
+        Toast.makeText(context, "Successfully removed " + person.getName(), Toast.LENGTH_SHORT).show();
     }
 
 }

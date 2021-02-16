@@ -24,9 +24,10 @@ public class QuizActivity extends AppCompatActivity {
     TextView scoreValue;
     TextView answerLabel;
     private Person  person;
-    private int score;
+    public static int score;
     private int maxScore;
     private Iterator<Person> personIterator;
+    public static List<Person> persons;
 
 
     @Override
@@ -48,7 +49,8 @@ public class QuizActivity extends AppCompatActivity {
         button.setOnClickListener(v -> checkAnswer());
 
         // Shuffle DB
-        List<Person> persons = ((Database) this.getApplication()).getDatabase();
+        PersonDatabase personDatabase = PersonDatabase.getInstance(this);
+        persons = personDatabase.personDAO().getAll();
         Collections.shuffle(persons);
         personIterator = persons.iterator();
 
