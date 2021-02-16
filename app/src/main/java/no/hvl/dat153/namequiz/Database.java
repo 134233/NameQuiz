@@ -6,14 +6,14 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import no.hvl.dat153.namequiz.R;
 
 public class Database extends Application {
-    private ArrayList<Person> database;
+    private List<Person> database;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,7 +25,7 @@ public class Database extends Application {
     public Database (){
         database = new ArrayList<>();
     }
-    public ArrayList<Person> getDatabase() {
+    public List<Person> getDatabase() {
         return database;
     }
 

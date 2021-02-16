@@ -1,6 +1,8 @@
 package no.hvl.dat153.namequiz;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import no.hvl.dat153.namequiz.DbAdapter;
 import no.hvl.dat153.namequiz.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import no.hvl.dat153.namequiz.Database;
 import no.hvl.dat153.namequiz.Person;
@@ -24,11 +27,15 @@ public class DatabaseActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.dbList);
 
-        ArrayList<Person> persons = ((Database) this.getApplication()).getDatabase();
+        List<Person> persons = ((Database) this.getApplication()).getDatabase();
 
         DbAdapter databaseAdapter = new DbAdapter(this, R.layout.dbrow, persons);
 
         listView.setAdapter(databaseAdapter);
+    }
 
+    public void addNewPerson(View view) {
+        Intent i = new Intent(this, AddActivity.class);
+        startActivity(i);
     }
 }

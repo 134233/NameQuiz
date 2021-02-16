@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import no.hvl.dat153.namequiz.Person;
 import no.hvl.dat153.namequiz.R;
@@ -22,7 +23,7 @@ public class DbAdapter extends ArrayAdapter<Person> {
     private Context context;
     private int resources;
 
-    public DbAdapter (@NonNull Context context, int resources, @NonNull ArrayList<Person> persons) {
+    public DbAdapter (@NonNull Context context, int resources, @NonNull List<Person> persons) {
         super(context, resources, persons);
         this.context = context;
         this.resources = resources;
@@ -42,6 +43,10 @@ public class DbAdapter extends ArrayAdapter<Person> {
         //Name
         TextView textView = view.findViewById(R.id.textViewName);
         textView.setText(getItem(position).getName());
+
+        //Delete button
+        Button deleteButton = view.findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(v -> remove(getItem(position)));
 
         return view;
     }

@@ -3,6 +3,7 @@
     package="no.hvl.dat153.namequiz">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".Database"
@@ -13,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NameQuiz">
 
+        <activity android:name=".AddActivity"/>
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".DatabaseActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DatabaseActivity" />
     </application>
 
 </manifest>

@@ -1,10 +1,8 @@
 package no.hvl.dat153.namequiz;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -16,6 +14,7 @@ import no.hvl.dat153.namequiz.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,18 +23,17 @@ public class MainActivity extends AppCompatActivity {
     void prepareMenu() {
         addMenuItem("Quiz", QuizActivity.class);
         addMenuItem("Database", DatabaseActivity.class);
-        addMenuItem("Add", AddActivity.class);
+        addMenuItem("Add new character", AddActivity.class);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    ArrayList<Person> persons = ((Database) this.getApplication()).getDatabase();
+    List<Person> persons = ((Database) this.getApplication()).getDatabase();
     boolean ans = persons.isEmpty();
-        if (ans == true) {
+        if (ans) {
         ((Database) this.getApplication()).addPerson(new Person("Donald", getDrawable(R.drawable.donald)));
         ((Database) this.getApplication()).addPerson(new Person("Dolly", getDrawable(R.drawable.dolly)));
         ((Database) this.getApplication()).addPerson(new Person("Anton", getDrawable(R.drawable.anton)));

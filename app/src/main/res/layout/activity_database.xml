@@ -11,6 +11,15 @@
         android:id="@+id/dbList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     </ListView>
+
+    <Button
+        android:id="@+id/addPersonDbView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:onClick="addNewPerson"
+        android:text="@string/add_a_new_person" />
 
 </LinearLayout>
